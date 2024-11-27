@@ -47,3 +47,4 @@ export NVM_DIR=~/.nvm
 export PATH=/opt/homebrew/bin:$PATH
 source $(brew --prefix nvm)/nvm.sh
 export PATH="$HOME/.emacs.d/bin:$PATH"
+export XDG_CONFIG_HOME="/Users/marcus/.config"
