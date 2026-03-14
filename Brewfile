@@ -12,10 +12,7 @@ cask 'qlvideo'
 cask 'sonos'
 cask 'raycast'
 cask 'ghostty'
-cask 'cursor'
 cask 'visual-studio-code'
-cask 'vlc'
-cask 'zoom'
 cask 'zoom'
 
 cask "font-jetbrains-mono"
