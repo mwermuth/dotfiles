@@ -26,7 +26,7 @@ fail () {
   echo ''
   exit
 }
-  
+
 
 setup_gitconfig () {
     if ! [ -f git/gitconfig.local.symlink ]
@@ -44,14 +44,14 @@ setup_gitconfig () {
         user ' - What is your github author email?'
         read -e git_authoremail
 
-        sed -e "s/AUTHORNAME/$git_authorname/" -e "s/AUTHOREMAIL/$git_authoremail/" -e "s/GIT_CREDENTIAL_HELPER/$git_credential/" git/gitconfig.local.symlink > ~/.gitconfig.local
+        sed -e "s/AUTHORNAME/$git_authorname/" -e "s/AUTHOREMAIL/$git_authoremail/" -e "s/GIT_CREDENTIAL_HELPER/$git_credential/" git/gitconfig.local.symlink.example > ~/.gitconfig.local
         success 'gitconfig'
     fi
 }
 
 link_file () {
   local src=$1 dst=$2
- 
+
   local overwrite= backup= skip=
   local action=
 
@@ -62,35 +62,35 @@ link_file () {
         then
 
             local currentSrc="$(readlink $dst)"
-        
+
             if [ "$currentSrc" == "$src" ]
             then
-        
+
                 skip=true
-        
+
             else
-        
+
                 user "File already exists: $dst ($(basename $src)), what do you want to do?\n\
                 [s]kip, [S]kip all, [o]verwrite, [O]verwrite all, [b]ackup, [B]ackup all?"
                 read -n 1 action
-        
+
                 case "$action" in
-                    o ) 
+                    o )
                         overwrite=true;;
-                    O ) 
+                    O )
                         overwrite_all=true;;
-                    b ) 
+                    b )
                         backup=true;;
-                    B ) 
+                    B )
                         backup_all=true;;
-                    s ) 
+                    s )
                         skip=true;;
-                    S ) 
+                    S )
                         skip_all=true;;
-                    * ) 
+                    * )
                         ;;
                 esac
-        
+
             fi
         fi
 
@@ -140,7 +140,7 @@ install_config_files () {
 
     # Set up XDG_CONFIG_HOME if not already set
     local xdg_config_home="${XDG_CONFIG_HOME:-$HOME/.config}"
-    
+
     # Create XDG config directory if it doesn't exist
     if [ ! -d "$xdg_config_home" ]; then
         mkdir -p "$xdg_config_home"
@@ -156,17 +156,17 @@ install_config_files () {
         # e.g., /path/to/ghostty/ghostty.config -> ghostty
         local app_name=$(basename "$(dirname "$src")")
         local config_file=$(basename "$src")
-        
+
         # Create application directory in XDG config home
         local app_config_dir="$xdg_config_home/$app_name"
         if [ ! -d "$app_config_dir" ]; then
             mkdir -p "$app_config_dir"
             success "created $app_config_dir directory"
         fi
-        
+
         # Set destination path
         local dst="$app_config_dir/config"
-        
+
         # Use the existing link_file function to handle the linking
         link_file "$src" "$dst"
     done
