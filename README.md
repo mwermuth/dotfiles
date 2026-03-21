@@ -5,7 +5,7 @@ Personal dotfiles for macOS development environment.
 ## Quick Start
 
 ```bash
-git clone https://github.com/yourusername/dotfiles.git ~/.dotfiles
+git clone https://github.com/mwermuth/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 ./script/bootstrap
 ```
@@ -15,6 +15,7 @@ cd ~/.dotfiles
 - **Shell**: Zsh configuration with custom prompt and aliases
 - **Git**: Global git configuration with credential helpers
 - **Terminal**: Ghostty terminal configuration with Catppuccin theme
+- **Claude Code**: Settings and custom status line for Claude Code CLI
 - **macOS**: System defaults and preferences
 - **Apps**: Homebrew packages and applications via Brewfile
 
@@ -23,6 +24,7 @@ cd ~/.dotfiles
 - `zsh/` - Zsh configuration files
 - `git/` - Git configuration and templates
 - `ghostty/` - Terminal configuration
+- `claude/` - Claude Code settings and status line
 - `macos/` - macOS system defaults
 - `script/` - Installation and setup scripts
 - `Brewfile` - Homebrew packages and applications
