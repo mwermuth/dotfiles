@@ -63,3 +63,9 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 export PATH="$HOME/.local/bin:$PATH"
+
+claude() {
+    printf '\033]0;Claude: %s\007' "${PWD##*/}"
+    CLAUDE_CODE_DISABLE_TERMINAL_TITLE=1 command claude "$@"
+    printf '\033]0;%s\007' "${PWD##*/}"
+}

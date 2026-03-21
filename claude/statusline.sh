@@ -131,14 +131,15 @@ printf "${GRAY} | ${RESET}"
 printf "${YELLOW}thinking: ${BOLD}%s${RESET}" "$THINK_LABEL"
 printf "\n"
 
-# ── Line 2: Usage Circles ──
-printf "${WHITE}current: ${GREEN}%s${RESET} ${GREEN}%d%%${RESET}" "$(circles $FIVE_PCT)" "$FIVE_PCT_INT"
-printf "${GRAY} | ${RESET}"
-printf "${WHITE}weekly: ${CYAN}%s${RESET} ${CYAN}%d%%${RESET}" "$(circles $WEEK_PCT)" "$WEEK_PCT_INT"
-printf "\n"
+# ── Line 2 & 3: Rate limits (only shown after first API response) ──
+if [[ -n "$FIVE_HR_PCT" && -n "$SEVEN_DAY_PCT" ]]; then
+  printf "${WHITE}current: ${GREEN}%s${RESET} ${GREEN}%d%%${RESET}" "$(circles $FIVE_PCT)" "$FIVE_PCT_INT"
+  printf "${GRAY} | ${RESET}"
+  printf "${WHITE}weekly: ${CYAN}%s${RESET} ${CYAN}%d%%${RESET}" "$(circles $WEEK_PCT)" "$WEEK_PCT_INT"
+  printf "\n"
 
-# ── Line 3: Reset Times ──
-printf "${GRAY}resets %s${RESET}" "$DAILY_RESET"
-printf "${GRAY} | ${RESET}"
-printf "${GRAY}resets %s${RESET}" "$WEEKLY_RESET"
-printf "\n"
+  printf "${GRAY}resets %s${RESET}" "$DAILY_RESET"
+  printf "${GRAY} | ${RESET}"
+  printf "${GRAY}resets %s${RESET}" "$WEEKLY_RESET"
+  printf "\n"
+fi
