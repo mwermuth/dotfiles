@@ -1,0 +1,8 @@
+{
+  "model": "opus",
+  "statusLine": {
+    "type": "command",
+    "command": "bash /Users/marcus/.claude/statusline.sh",
+    "padding": 2
+  }
+}
